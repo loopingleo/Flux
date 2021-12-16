@@ -15,6 +15,8 @@ let db = {
     resistanceTarget: models.resistanceTarget.default,
     slopeTarget: models.slopeTarget.default,
 
+    heartRateTarget: models.heartRateTarget.default,
+
     mode: models.mode.default,
     page: models.page.default,
 
@@ -88,6 +90,7 @@ xf.reg('ui:mode-set', (mode, db) => {
     if(equals(mode, 'erg'))        xf.dispatch(`ui:power-target-set`, db.powerTarget);
     if(equals(mode, 'resistance')) xf.dispatch(`ui:resistance-target-set`, db.resistanceTarget);
     if(equals(mode, 'slope'))      xf.dispatch(`ui:slope-target-set`, db.slopeTarget);
+    if(equals(mode, 'heartRate'))      xf.dispatch(`ui:heart-rate-target-set`, db.heartRateTarget);
 });
 
 // Targets
@@ -119,6 +122,19 @@ xf.reg('ui:slope-target-inc', (_, db) => {
 });
 xf.reg(`ui:slope-target-dec`, (_, db) => {
     db.slopeTarget = models.slopeTarget.dec(db.slopeTarget);
+});
+
+
+xf.reg('ui:heart-rate-target-set', (heartRateTarget, db) => {
+    db.heartRateTarget = models.heartRateTarget.set(heartRateTarget);
+});
+
+xf.reg('ui:heart-rate-target-inc', (_, db) => {
+    db.heartRateTarget = models.heartRateTarget.inc(db.heartRateTarget);
+});
+
+xf.reg(`ui:heart-rate-target-dec`, (_, db) => {
+    db.heartRateTarget = models.heartRateTarget.dec(db.heartRateTarget);
 });
 
 // Profile

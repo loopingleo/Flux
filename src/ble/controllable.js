@@ -19,7 +19,12 @@ class Controllable extends Device {
         xf.sub('db:powerTarget', power => {
             if(self.isConnected(self.device) && (equals(mode, 'erg'))) {
                 self.control.setTargetPower(power);
+            };
+            // heart rate mode
+            if(self.isConnected(self.device) && (equals(mode, 'heartRate'))) {
+                self.control.setTargetPower(power);
             }
+
         });
         xf.sub('db:resistanceTarget', resistance => {
             if(self.isConnected(self.device)) self.control.setTargetResistance(resistance);

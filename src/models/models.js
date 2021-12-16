@@ -201,9 +201,18 @@ class SlopeTarget extends Target {
     parse(value) { return parseFloat(value); }
 }
 
+class HeartRateTarget extends Target {
+    postInit(args) {
+        this.min = args.min || 60;
+        this.max = args.max || 200;
+        this.step = args.step || 1;
+    }
+}
+
+
 class Mode extends Model {
     postInit(args) {
-        this.values = ['erg', 'resistance', 'slope'];
+        this.values = ['erg', 'resistance', 'slope', 'heartRate'];
     }
     defaultValue() { return 'erg'; }
     defaultIsValid(value) { return this.values.includes(value); }
@@ -489,6 +498,8 @@ const sources = new Sources({prop: 'sources'});
 const powerTarget = new PowerTarget({prop: 'powerTarget'});
 const resistanceTarget = new ResistanceTarget({prop: 'resistanceTarget'});
 const slopeTarget = new SlopeTarget({prop: 'slopeTarget'});
+const heartRateTarget = new HeartRateTarget({prop: 'heartRateTarget'});
+
 const mode = new Mode({prop: 'mode'});
 const page = new Page({prop: 'page'});
 
@@ -510,6 +521,7 @@ let models = { power,
                powerTarget,
                resistanceTarget,
                slopeTarget,
+               heartRateTarget, 
                mode,
                page,
                ftp,

@@ -4,6 +4,8 @@ import './views/views.js';
 import './connectionManager.js';
 import './watch.js';
 import './lock.js';
+import './heart-rate-mode.js';
+
 
 function startServiceWorker() {
     if('serviceWorker' in navigator) {

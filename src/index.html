@@ -166,6 +166,11 @@
                                                 prop="mode"
                                                 effect="mode-set"
                                                 param="slope">Slope</tab-btn>
+                                        <tab-btn id="heart-rate-mode-btn"
+                                                 class="mode"
+                                                 prop="mode"
+                                                 effect="mode-set"
+                                                 param="heartRate">heart rate</tab-btn>
                                     </div> <!-- end mode selector -->
                                 </div> <!-- tab-btn-group -->
 
@@ -237,6 +242,30 @@
                                             </div>
                                         </div>
                                     </div> <!-- end slope mode -->
+
+                                    <div id="heart-rate-mode-controls" class="tab mode-controls" tab="heartRate">
+                                        <div id="heart-rate-control-btn" class="number-btn">
+                                            <div class="number-input">
+                                                <button is="effect-button"
+                                                        id="heart-rate-target-dec"
+                                                        class="number-input--dec number-input--btn btn"
+                                                        effect="heart-rate-target-dec">-</button>
+                                                <input is="int-input"
+                                                    id="heart-rate-target-input"
+                                                    class="number-input--value"
+                                                    type="number"
+                                                    value="0"
+                                                    autocomplete="off"
+                                                    prop="heartRateTarget"
+                                                    effect="heart-rate-target-set" />
+                                                <button is="effect-button"
+                                                        id="heart-rate-target-inc"
+                                                        class="number-input--inc number-input--btn btn"
+                                                        effect="heart-rate-target-inc">+</button>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end heart rate mode -->
+
                                 </tab-group>
                             </div> <!-- end targets--cont -->
                         </div> <!-- end targets -->
