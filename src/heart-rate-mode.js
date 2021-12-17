@@ -57,7 +57,7 @@ function HeartRateMode() {
     function shouldUpdateTarget() {
         var seconds = new Date().getTime() / 1000;
 
-        if (equals(Math.round(seconds) % 5, 0)){
+        if (equals(Math.round(seconds) % 10, 0)){
             return true;
         } else {
             return false;
@@ -66,10 +66,18 @@ function HeartRateMode() {
 
     function adjustPowerTarget(powerTarget) {
 
+        //if(heartRate < hrtarget) {
+        //    return powerTarget + 1;
+        //} else {
+        //    return powerTarget - 1;
+        //}
+
         if(heartRate < hrtarget) {
-            return powerTarget + 1;
+            powerTarget = Math.min(Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.5 + 1)), powerTarget + 3);
+            return powerTarget;
         } else {
-            return powerTarget - 1;
+            powerTarget = (Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.0 + 1)));
+            return powerTarget;
         }
 
     }
