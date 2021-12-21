@@ -93,7 +93,7 @@ function HeartRateMode() {
         console.log(powerTarget2);
         console.log((powerTarget1 + powerTarget2) / 2);
 
-        return powerTarget = (powerTarget1 + powerTarget2) / 2
+        return powerTarget = ((powerTarget1 + powerTarget2) / 2) + 6
     }
 
     return {
