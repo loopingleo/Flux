@@ -80,6 +80,14 @@ function HeartRateMode() {
             return powerTarget;
         }
 
+        
+    console.log(score(
+        [90, //cad 
+        100, // hr
+        150, //pwr
+        180 //hr in 60 sec
+    ]));
+
     }
 
     return {
