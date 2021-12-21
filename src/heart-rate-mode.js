@@ -72,6 +72,13 @@ function HeartRateMode() {
         //    return powerTarget - 1;
         //}
 
+        console.log(score(
+            [90, //cad 
+            100, // hr
+            150, //pwr
+            180 //hr in 60 sec
+        ]))
+
         if(heartRate < hrtarget) {
             powerTarget = Math.min(Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.5 + 1)), powerTarget + 3);
             return powerTarget;
@@ -79,14 +86,6 @@ function HeartRateMode() {
             powerTarget = (Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.0 + 1)));
             return powerTarget;
         }
-
-        
-    console.log(score(
-        [90, //cad 
-        100, // hr
-        150, //pwr
-        180 //hr in 60 sec
-    ]));
 
     }
 
