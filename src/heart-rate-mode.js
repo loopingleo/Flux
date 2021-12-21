@@ -3,6 +3,8 @@ import { score } from './ml.js';
 
 function HeartRateMode() {
     let heartRate = 0;
+    let powerTarget1 = 50;
+    let powerTarget2 = 50;
     let powerTarget = 50;
     let hrtarget = 120;
 
@@ -81,13 +83,19 @@ function HeartRateMode() {
         ]))
 
         if(heartRate < hrtarget) {
-            powerTarget = Math.min(Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.5 + 1)), powerTarget + 3);
-            return powerTarget;
+            powerTarget1 = Math.min(Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.5 + 1)), powerTarget + 3);
         } else {
-            powerTarget = (Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.0 + 1)));
-            return powerTarget;
+            powerTarget1 = (Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.0 + 1)));
         }
 
+        powerTarget2 =     score(
+            [90, //cad 
+            heartRate, // hr
+            powerTarget, //pwr
+            hrtarget //hr in 60 sec
+        ])   
+
+        return powerTarget = (powerTarget1 + powerTarget2) / 2
     }
 
     return {
