@@ -7,6 +7,8 @@ function HeartRateMode() {
     let powerTarget2 = 50;
     let powerTarget = 50;
     let hrtarget = 120;
+    let elapsed;
+    let cadence;
 
     function init() {
         // on start button press the subscribtions are initialized
@@ -25,13 +27,20 @@ function HeartRateMode() {
         xf.sub('db:heartRate', onHeartRate);
         xf.sub('db:powerTarget', onPowerTarget);
         xf.sub('db:heartRateTarget', onheartRateTarget);
+        xf.sub('db:elapsed', onElapsed);
+        xf.sub('db:cadence', onCadence);
+
     }
 
     function stop() {
         xf.unsub('db:heartRate', onHeartRate);
         xf.unsub('db:powerTarget', onPowerTarget);
         xf.unsub('db:heartRateTarget', onheartRateTarget);
+        xf.unsub('db:elapsed', onElapsed);
+        xf.unsub('db:cadence', onCadence);
     }
+
+
 
     // updates with the latest value of heart rate when one is available
     function onHeartRate(value) {
@@ -50,6 +59,14 @@ function HeartRateMode() {
         hrtarget = value;
     }
 
+    function onElapsed(value) {
+        elapsed = value;
+    }
+
+    function onCadence(value) {
+        cadence = value;
+    }
+
     function setPowerTarget() {
         if(shouldUpdateTarget()) {
             const adjustedTarget = adjustPowerTarget(powerTarget);
@@ -60,7 +77,7 @@ function HeartRateMode() {
     function shouldUpdateTarget() {
         var seconds = new Date().getTime() / 1000;
 
-        if (equals(Math.round(seconds) % 10, 0)){
+        if (equals(Math.round(seconds) % 5, 0)){
             return true;
         } else {
             return false;
@@ -69,13 +86,6 @@ function HeartRateMode() {
 
     function adjustPowerTarget(powerTarget) {
 
-        //if(heartRate < hrtarget) {
-        //    return powerTarget + 1;
-        //} else {
-        //    return powerTarget - 1;
-        //}
-
-
         if(heartRate < hrtarget) {
             powerTarget1 = Math.min(Math.round(powerTarget * ((hrtarget/heartRate - 1) * 1.5 + 1)), powerTarget + 3);
         } else {
@@ -83,11 +93,14 @@ function HeartRateMode() {
         }
 
         powerTarget2 =     score(
-            [90, //cad 
+            [cadence, //cad 
+            elapsed, //time
             heartRate, // hr
             powerTarget, //pwr
             hrtarget //hr in 60 sec
         ])   
+
+        console.log(elapsed);
 
         console.log(powerTarget1);
         console.log(powerTarget2);
