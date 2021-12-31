@@ -1,5 +1,7 @@
 import { equals, xf } from './functions.js';
 import { score } from './ml.js';
+import { db } from './db.js';
+
 
 function HeartRateMode() {
     let heartRate = 0;
@@ -9,6 +11,7 @@ function HeartRateMode() {
     let hrtarget = 120;
     let elapsed;
     let cadence;
+    let dbrecords;
 
     function init() {
         // on start button press the subscribtions are initialized
@@ -29,6 +32,8 @@ function HeartRateMode() {
         xf.sub('db:heartRateTarget', onheartRateTarget);
         xf.sub('db:elapsed', onElapsed);
         xf.sub('db:cadence', onCadence);
+        xf.sub('db:records', onRecords);
+
 
     }
 
@@ -51,6 +56,7 @@ function HeartRateMode() {
 
     function onPowerTarget(value) {
         powerTarget = value;
+        //console.log(db.records)
 
         //setPowerTarget();
     }
@@ -65,6 +71,11 @@ function HeartRateMode() {
 
     function onCadence(value) {
         cadence = value;
+    }
+
+
+    function onRecords(value) {
+        dbrecords = value;
     }
 
     function setPowerTarget() {
