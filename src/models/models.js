@@ -205,7 +205,7 @@ class HeartRateTarget extends Target {
     postInit(args) {
         this.min = args.min || 60;
         this.max = args.max || 200;
-        this.step = args.step || 5;
+        this.step = args.step || 3;
     }
 }
 
