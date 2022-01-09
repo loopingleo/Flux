@@ -88,7 +88,7 @@ function HeartRateMode() {
     function shouldUpdateTarget() {
         var seconds = new Date().getTime() / 1000;
 
-        if (equals(Math.round(seconds) % 5, 0)){
+        if (equals(Math.round(seconds) % 3, 0)){
             return true;
         } else {
             return false;
@@ -105,7 +105,7 @@ function HeartRateMode() {
 
         powerTarget2 =     score(
             [cadence, //cad 
-            elapsed, //time
+            //elapsed, //time
             heartRate, // hr
             powerTarget, //pwr
             hrtarget //hr in 60 sec
@@ -115,7 +115,7 @@ function HeartRateMode() {
 
         console.log(powerTarget1);
         console.log(powerTarget2);
-        console.log((powerTarget1 + powerTarget2) / 2);
+        console.log((powerTarget1 + powerTarget2) / 2 + 6);
 
         return powerTarget = ((powerTarget1 + powerTarget2) / 2) + 6
     }
